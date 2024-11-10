@@ -130,8 +130,8 @@ export default function View() {
                                     id={`field-${index}`}
                                     name={ele.value}
                                     type={ele.type}
-                                    label={ele.label}
-                                    placeholder={ele.placeholder}
+                                    label={ele.value}
+                                    placeholder={ele.label}
                                     variant="standard"
                                     value={formValues[ele.value] || ""}
                                     onChange={handleChange}
