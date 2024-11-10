@@ -98,7 +98,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                 if (isEditMode) {
                     console.log('Form updated successfully:', data);
                 } else {
-                    handleFormAdd(data); // Add the new form to the list
+                    handleFormAdd(data);
                     console.log('Form created successfully:', data);
                 }
 
