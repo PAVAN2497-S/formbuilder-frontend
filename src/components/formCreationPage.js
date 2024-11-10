@@ -70,7 +70,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
 
     useEffect(() => {
         if (_id) {
-            const existingForm = formsList.find((form) => form._id === _id);
+            const existingForm = formsList?.find((form) => form?._id === _id);
             if (existingForm) {
                 setFormData(existingForm);
                 setIsEditMode(true);
@@ -93,10 +93,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                 },
                 body: JSON.stringify(formData),
             });
-
             const data = await response.json();
-            console.log(data, isEditMode ? "updateFormResponse" : "createFormResponse");
-
             if (response.ok) {
                 if (isEditMode) {
                     console.log('Form updated successfully:', data);
@@ -126,7 +123,6 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
             });
 
             const data = await response.json();
-            console.log(data, "updateFormResponse");
 
             if (response.ok) {
                 console.log('Form updated successfully:', data);
@@ -142,8 +138,8 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
 
     useEffect(() => {
         if (_id) {
-            formsList.find((form) => form._id === _id);
-            setFormData(formsList.find((form) => form._id === _id) ?? {});
+            formsList.find((form) => form?._id === _id);
+            setFormData(formsList?.find((form) => form?._id === _id) ?? {});
         }
     }, [formsList, _id]);
 
@@ -172,12 +168,11 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
         setFormFieldsValue({ ...field });
     };
 
-    console.log(formFieldsValue, "formFieldsValue");
 
 
     const handleDeleteClick = (field) => {
-        const newFormFields = formData.formFields.filter(
-            ({ id }) => id !== field.id
+        const newFormFields = formData?.formFields?.filter(
+            ({ id }) => id !== field?.id
         );
         setFormData({ ...formData, formFields: newFormFields });
     };
@@ -214,7 +209,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
         }
     }, [formFieldsValue]);
 
-    console.log(formFieldsValue, "formFieldsValue");
+
 
     return (
         <Container sx={{ p: 4 }}>
@@ -273,7 +268,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                                     >
                                         Close Add Input
                                     </Button>
-                                    {formData.formFields.length >= 20 && <p style={{ color: "red" }}>You cannot add more than 20 input fields.</p>}
+                                    {formData?.formFields?.length >= 20 && <p style={{ color: "red" }}>You cannot add more than 20 input fields.</p>}
                                     <Box
                                         display="flex"
                                         flexDirection="row"
@@ -290,7 +285,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                                             <Button
                                                 key={type.value}
                                                 variant="contained"
-                                                disabled={formData.formFields.length >= 20}
+                                                disabled={formData?.formFields?.length >= 20}
                                                 color="primary"
                                                 onClick={() => handleAddInput(type)}
                                                 sx={{ mx: 1 }}
@@ -329,9 +324,9 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                             <TextField
                                 variant="standard"
                                 value={
-                                    formData.formTitle === "Untitled Form"
+                                    formData?.formTitle === "Untitled Form"
                                         ? ""
-                                        : formData.formTitle
+                                        : formData?.formTitle
                                 }
                                 placeholder="Title"
                                 onChange={handleTitleChange}
@@ -351,11 +346,11 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                                     align="center"
                                 >
                                 </Typography>
-                                <Typography style={{ marginLeft: "150px", fontWeight: "bold" }}>{formFieldsValue.type.toUpperCase()}</Typography>
+                                <Typography style={{ marginLeft: "150px", fontWeight: "bold" }}>{formFieldsValue?.type?.toUpperCase()}</Typography>
                                 <Box>
                                     <TextField
                                         variant="standard"
-                                        value={formFieldsValue.value}
+                                        value={formFieldsValue?.value}
                                         label="Title"
                                         onChange={(event) =>
                                             handleTitlePlaceHolderChange("value", event)
@@ -364,7 +359,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                                     />
                                     <TextField
                                         variant="standard"
-                                        value={formFieldsValue.label || ""}
+                                        value={formFieldsValue?.label || ""}
                                         label="Placeholder"
                                         onChange={(event) =>
                                             handleTitlePlaceHolderChange("label", event)

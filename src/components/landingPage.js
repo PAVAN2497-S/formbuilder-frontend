@@ -12,8 +12,6 @@ const LandingPage = ({ formsList, setFormsList }) => {
                 const response = await fetch('http://localhost:5000/forms');
                 const result = await response.json();
                 setFormsList(result);
-                console.log(formsList, "formsList");
-
             } catch (error) {
                 console.error("Error fetching forms:", error);
             } finally {
@@ -43,8 +41,7 @@ const LandingPage = ({ formsList, setFormsList }) => {
             });
             const result = await response.json();
             if (response.ok) {
-                setFormsList((prevForms) => prevForms.filter(form => form._id !== formId));
-                console.log("Form deleted successfully", result);
+                setFormsList((prevForms) => prevForms?.filter(form => form?._id !== formId));
                 navigate("/");
             } else {
                 console.error("Error deleting form:", result);
@@ -77,12 +74,12 @@ const LandingPage = ({ formsList, setFormsList }) => {
                 <Divider variant="middle" />
             </div>
 
-            {formsList.length > 0 ? (
+            {formsList?.length > 0 ? (
                 <Box mt={4}>
-                    {formsList.map((formDetails) => (
-                        <Card key={formDetails._id} sx={{ mb: 2, p: 2, width: 300 }}>
+                    {formsList?.map((formDetails) => (
+                        <Card key={formDetails?._id} sx={{ mb: 2, p: 2, width: 300 }}>
                             <Typography variant="h4" component="h2" gutterBottom align="center">
-                                {formDetails.formTitle}
+                                {formDetails?.formTitle}
                             </Typography>
                             <Box display="flex" flexDirection="row" alignItems="center" mt={2}>
                                 <Button

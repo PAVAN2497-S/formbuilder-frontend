@@ -22,7 +22,7 @@ export default function View() {
                     const data = await response.json();
                     console.log(data);
                     setFormDetails(data); 
-                    const initialFormValues = data.formFields.reduce((acc, field) => {
+                    const initialFormValues = data?.formFields?.reduce((acc, field) => {
                         acc[field.value] = ''; 
                         return acc;
                     }, {});
@@ -53,7 +53,7 @@ export default function View() {
     const validate = () => {
         let tempErrors = {};
 
-        formDetails.formFields.forEach((field) => {
+        formDetails?.formFields?.forEach((field) => {
             const value = formValues[field.value];
 
             if (!value) {
@@ -94,9 +94,6 @@ export default function View() {
         if (validate()) {
             alert('Form submitted: Thank you! Open console for form data')
             console.log("Form Submitted:", formValues);
-
-
-
         }
     };
 
