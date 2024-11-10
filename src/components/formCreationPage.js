@@ -85,7 +85,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
             const url = isEditMode
                 ? `http://localhost:5000/forms/${_id}`
                 : 'http://localhost:5000/forms';
-    
+
             const response = await fetch(url, {
                 method,
                 headers: {
@@ -93,10 +93,10 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             const data = await response.json();
             console.log(data, isEditMode ? "updateFormResponse" : "createFormResponse");
-    
+
             if (response.ok) {
                 if (isEditMode) {
                     console.log('Form updated successfully:', data);
@@ -104,7 +104,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                     handleFormAdd(data); // Add the new form to the list
                     console.log('Form created successfully:', data);
                 }
-               
+
             } else {
                 console.error('Error saving form:', data);
             }
@@ -112,7 +112,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
             console.error('Network error:', error);
         }
     };
-    
+
 
     const handleFormUpdate = async (e) => {
         e.preventDefault();
@@ -184,7 +184,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
 
     const handleAddInput = ({ value }) => {
         const newField = {
-            id: Number(new Date()), // Always use a unique ID
+            id: Number(new Date()),
             type: value,
             value: "",
             label: "",
@@ -239,7 +239,7 @@ const FormCreation = ({ handleFormAdd, formsList }) => {
                             </Typography>
 
                             <Grid container spacing={2} mt={2} ml={-9}>
-                          
+
                                 {formData?.formFields?.length > 20 ? (
                                     <Grid item xs={12}>
                                         <Typography color="error" variant="h6" align="center">

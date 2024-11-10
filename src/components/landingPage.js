@@ -80,7 +80,7 @@ const LandingPage = ({ formsList, setFormsList }) => {
             {formsList.length > 0 ? (
                 <Box mt={4}>
                     {formsList.map((formDetails) => (
-                        <Card  key={formDetails._id}  sx={{ mb: 2, p: 2, width:300 }}>
+                        <Card key={formDetails._id} sx={{ mb: 2, p: 2, width: 300 }}>
                             <Typography variant="h4" component="h2" gutterBottom align="center">
                                 {formDetails.formTitle}
                             </Typography>

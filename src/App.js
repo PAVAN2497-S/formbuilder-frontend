@@ -12,7 +12,6 @@ function App() {
   };
 
   useEffect(() => {
-    // Fetch data from the backend
     const fetchForms = async () => {
       try {
         const response = await fetch('http://localhost:5000/forms');
@@ -20,14 +19,13 @@ function App() {
           throw new Error('Failed to fetch forms');
         }
         const data = await response.json();
-        setForms(data); // Update the state with the fetched data
-        // Set loading to false after data is fetched
+        setForms(data);
       } catch (err) {
-        console.log(err.message); // Set the error state if something went wrong
-        
+        console.log(err.message);
+
       }
     };
-    fetchForms(); // Call the function to fetch the data
+    fetchForms();
   }, []);
 
   return (
